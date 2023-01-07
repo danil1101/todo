@@ -1,13 +1,17 @@
 <template lang="ru">
-	<transition-group name="todo-list">
-	<div v-for="todo in todos" :key="todo.id" class="todos__list todo" >
-		<div class="todo__item">
-			<input class="form-check-input todo__check" @click="show" type="checkbox" id="{{ todo.id }}">
-			<label class="form-check-label todo__text" for="{{ todo.id }}">{{ todo.text }}</label>
-			<button type="button" class="btn-close todo__btn"  @click="$emit('remove', todo)"></button>
-		</div>
+	
+	<div class="todos-list">
+		<img @click="hideList" src="../assets/img/down-arrow.png" alt="" class="arrow-down">
+		<transition-group  name="todo-list">
+			<div v-for="todo in todos"  :ref="'item_' + todo.id"  :key="todo.id"  class="todos__list todo" >
+				<div class="todo__item" v-show="listVisible && todo.visible">
+					<input  class="form-check-input todo__check" @click.stop="$emit('activeStatus', todo)" type="checkbox" id="{{ todo.id }}">
+					<label class="form-check-label todo__text"  >{{ todo.text }}</label>
+					<button type="button" class="btn-close todo__btn"  @click="$emit('remove', todo)"></button>
+				</div>
+			</div>
+		</transition-group>
 	</div>
-	</transition-group>
 	
 </template>
 <script>
@@ -16,22 +20,46 @@ export default {
 	props: {
 		todos: {
 			type: Array,
-			required: false
+			required: true
 		}
 	},
 	data() {
 		return{
-			itemVisible: false
+			listVisible: true,
+			statusCompleted: false
 		}
 	},
 	methods: {
-		show(event){
-			event.target.closest('.todo__item').classList.toggle('_checked');
+		hideList(){
+			if (this.listVisible){
+				this.listVisible = false;
+			} else {
+				this.listVisible = true;
+			}
+			
 		}
 	},
 }
 </script>
 <style lang="scss" scoped>
+
+	
+
+	.arrow-down{
+			width: 30px;
+			z-index: 10;
+			cursor: pointer;
+			height: 30px;
+			opacity:0.7;
+			top:-48px;
+			left:10px;
+			display: block;
+			position:absolute;
+		}
+	.todos-list{
+		position: relative;
+		
+	}
 	.todos {
 		&__list {
 			display: flex;
@@ -42,13 +70,16 @@ export default {
 	.todo {
 		&__text {
 			cursor: pointer;
-			font-size: 18px;
+			font-size: 20px;
 			line-height: 1;
-			max-width:555px;
+			max-width: calc(100% - 75px);
 			width: 100%;
 			margin: auto 0;
-			font-size: 18px;
+			
 			transition: all 2s ease 0s;
+			@media (max-width: 768px){
+			 font-size: 18px;
+			}
 			._checked &{
 				text-decoration: line-through;
 				opacity: 0.5;
@@ -60,7 +91,7 @@ export default {
 			position: relative;
 			display: flex;
 			overflow: hidden;
-			padding: 20px ;
+			padding: 20px 10px;
 			border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 			transition: opacity 4s ease 0.5s;
 			
@@ -90,10 +121,10 @@ export default {
 			right: 20px;
 			top:25px;
 			transition: opacity 0.3s ease 0s;
-			opacity:0.2;
+			opacity:0;
 			&:focus {
 				box-shadow: none;
-				opacity: 1;
+				opacity: 0.8;
 			}
 
 			
@@ -121,11 +152,11 @@ export default {
 	  	transform: translateX(30px);
 	}
 	.todo-list-move {
-	  	transition: transform 0.5s ease;
+	  	transition: transform 0.3s ease;
 	}
 	
 	._checked{
-		.form-check-input:checked{
+		.form-check-input{
 			background: url('../assets/img/check.svg') 4px 7px no-repeat;
 			border-color:rgba(0, 0, 0, 0.25);
 			
