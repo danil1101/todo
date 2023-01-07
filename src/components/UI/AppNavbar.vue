@@ -6,7 +6,7 @@
 			<button ref="btnActive" @click="isActive($event.target); $emit('showActive', todos)" class="btn-navbar__active btn-navbar">Активные</button>
 			<button ref="btnCompleted" @click="isActive($event.target); $emit('showComleted', todos)" class="btn-navbar__completed btn-navbar">Выполненые</button>
 		</div>
-		<div @click="this.todos.length = 0" class="navbar__clear">Очистить все</div>
+		<div @click="clearTodo" class="navbar__clear">Очистить все</div>
 	</div>
 </template>
 
@@ -67,7 +67,10 @@
 				}
 				
 			},
-				
+			clearTodo() {
+				this.todos.length = 0
+				localStorage.setItem('todos', JSON.stringify(this.todos))
+			},
 			countTodos() {
 				let len = 0;
 				for (const t of this.todos) {
