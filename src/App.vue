@@ -77,13 +77,23 @@ export default {
 			}
 			this.currentTab = 'complete';
 		},
-		createTodo(todo){
-			this.todos.unshift(todo)
-		},
 		removeTodo(todo){
 			this.todos = this.todos.filter(p => p.id !== todo.id)
-		}
-	}
+
+			localStorage.setItem('todos', JSON.stringify(this.todos))
+		},
+		createTodo(todo){
+			this.todos.unshift(todo)
+
+			localStorage.setItem('todos', JSON.stringify(this.todos))
+		},
+		
+	},
+	async mounted() {
+		const data = await localStorage.getItem('todos');
+		data ? this.todos = JSON.parse(data) : null
+	},
+
 }
 </script>
 
