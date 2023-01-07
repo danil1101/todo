@@ -1,5 +1,4 @@
 <template>
-	
 	<div class="app" >
 		<h1 class="app__title">todos</h1>
 		<div class="app__container">
@@ -14,10 +13,9 @@
 		</div>
 	</div>
 </template>
-
 <script>
-import TodoForm from '@/components/TodoForm'
-import TodoList from '@/components/TodoList'
+import TodoForm from '@/components/TodoForm';
+import TodoList from '@/components/TodoList';
 import { 
   OverlayScrollbars, 
   ScrollbarsHidingPlugin, 
@@ -39,17 +37,14 @@ export default {
 			currentTab: 'all'
 		}
 	},
-	watch: {
-		
-	},
 	methods: {
 		updateStatus(todo){
 			event.target.closest('.todo__item').classList.add('_checked');
 			for (const t of this.todos) {
 				if (t.id == todo.id){
-					t.status = 'completed';
+					t.status = 'completed'
 				}
-			};
+			}
 		},
 		showAllTodo(todos){
 			for (const t of todos) {
@@ -87,82 +82,67 @@ export default {
 
 			localStorage.setItem('todos', JSON.stringify(this.todos))
 		},
-		
 	},
 	async mounted() {
 		const data = await localStorage.getItem('todos');
 		data ? this.todos = JSON.parse(data) : null
 	},
-
 }
 </script>
-
 <style lang="scss">
-	
-	body{
+	body {
 		background-color: #f5f5f5;
 		overflow-y: scroll;
-		  
 	}
-	
 	body::-webkit-scrollbar {
   		width: 6px;
-		  background: rgba(0,0,0,0.2); 
+		background: rgba(0,0,0,0.2); 
 	}
 	body::-webkit-scrollbar-track {
 		margin: 6px;
-  
 	}	
 	body::-webkit-scrollbar-thumb {
 	width: 5px;
 	border: 8px solid rgba(0,0,0,0.6);
-
-  border-radius: 20px;
- 
+   border-radius: 20px;
 	}
-	#app{
+	#app {
 		max-width: 700px;
 		margin: 50px auto 0;
 		padding: 0 15px;
 		width: 100%;
-		@media (max-width: 768px){
+		@media (max-width: 768px) {
 			  margin-top: 15px;
 		}
-		
 	}
 	.app{
-		position: relative;	
-		
+		position: relative;
 		font-family: 'Montserrat', sans-serif;
-		&__container{
+		&__container {
 			margin: 0 auto;
 			background-color: #fff;
-			
 			border: 1px solid rgba(0,0,0,0.3);
 			border-top:none;
 			filter: drop-shadow(0 20px 10px  rgba(0, 0, 0, 0.25));
-			
 		}
-		&__title{
+		&__title {
 			font-family: 'Roboto', sans-serif;
 			text-align: center;
 			font-size: 75px;
 			font-weight: 100;
 			color: #cacac1;
 			margin-bottom: 10px;
-			@media (max-width: 630px){
+			@media (max-width: 630px) {
 				  font-size: 65px;
 			}
 		}
 	}
 	.pages{
 		margin: 0 auto;
-		.page{
-				background-color: #f5f5f5;
+		.page {
+			background-color: #f5f5f5;
 			filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 			margin: 0 auto;
-			
-			
 			border: 1px solid rgba(0,0,0,0.3);
 			padding-bottom: 5px;
 			&:nth-child(1) {
@@ -191,5 +171,4 @@ export default {
 			}
 		}
 	}
-	 
 </style>

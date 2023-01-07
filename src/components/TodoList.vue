@@ -1,5 +1,4 @@
 <template lang="ru">
-	
 	<div class="todos-list">
 		<img @click="hideList" src="../assets/img/down-arrow.png" alt="" class="arrow-down">
 		<transition-group  name="todo-list">
@@ -12,7 +11,6 @@
 			</div>
 		</transition-group>
 	</div>
-	
 </template>
 <script>
 export default {
@@ -36,37 +34,27 @@ export default {
 			} else {
 				this.listVisible = true;
 			}
-			
 		}
 	},
 }
 </script>
 <style lang="scss" scoped>
-
-	
-
 	.arrow-down{
-			width: 30px;
-			z-index: 10;
-			cursor: pointer;
-			height: 30px;
-			opacity:0.7;
-			top:-48px;
-			left:10px;
-			display: block;
-			position:absolute;
-		}
+		width: 30px;
+		z-index: 10;
+		cursor: pointer;
+		height: 30px;
+		opacity:0.7;
+		top:-48px;
+		left:10px;
+		display: block;
+		position:absolute;
+	}
 	.todos-list{
 		position: relative;
-		
+		display: flex;
+		flex-direction: column;
 	}
-	.todos {
-		&__list {
-			display: flex;
-			flex-direction: column;
-		}
-	}
-
 	.todo {
 		&__text {
 			cursor: pointer;
@@ -75,7 +63,6 @@ export default {
 			max-width: calc(100% - 75px);
 			width: 100%;
 			margin: auto 0;
-			
 			transition: all 2s ease 0s;
 			@media (max-width: 768px){
 			 font-size: 18px;
@@ -83,7 +70,6 @@ export default {
 			._checked &{
 				text-decoration: line-through;
 				opacity: 0.5;
-				
 			}
 		}
 
@@ -94,12 +80,10 @@ export default {
 			padding: 20px 10px;
 			border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 			transition: opacity 4s ease 0.5s;
-			
-			
 			&:hover{
-					.todo__btn{
-						opacity: 0.7;
-					}
+				.todo__btn{
+					opacity: 0.7;
+				}
 			}
 		}
 
@@ -136,8 +120,7 @@ export default {
 	}
 	.form-check-input{
 		background: none;
-	}
-	
+	}	
 	.todo-list-item {
   		display: inline-block;
   		margin-right: 20px;
@@ -154,14 +137,10 @@ export default {
 	.todo-list-move {
 	  	transition: transform 0.3s ease;
 	}
-	
 	._checked{
 		.form-check-input{
 			background: url('../assets/img/check.svg') 4px 7px no-repeat;
 			border-color:rgba(0, 0, 0, 0.25);
-			
 		}
 	}
-	
-	
 </style>

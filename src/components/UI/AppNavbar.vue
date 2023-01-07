@@ -9,7 +9,6 @@
 		<div @click="clearTodo" class="navbar__clear">Очистить все</div>
 	</div>
 </template>
-
 <script>
 	export default {
 		name: 'app-navbar',
@@ -24,7 +23,7 @@
 			}
 		},
 		watch: {
-		countTodos() {
+			countTodos() {
 				let len = 0;
 				for (const t of this.todos) {
 					if (t.visible && this.currentTab !== 'all'){
@@ -65,7 +64,6 @@
 					buttonAll.classList.remove('_active');
 					buttonActive.classList.remove('_active');
 				}
-				
 			},
 			clearTodo() {
 				this.todos.length = 0
@@ -92,7 +90,6 @@
 		},
 	}
 </script>
-
 <style lang="scss" scoped>
 	.navbar {
 		@media (max-width: 768px){
@@ -106,22 +103,20 @@
 		padding: 15px 10px;
 		opacity: 0.8;
 		&__quantity {
-			@media (max-width: 630px){
-			flex: 1 1 100%;
-			
+			@media (max-width: 630px) {
+				flex: 1 1 100%;
 			}
 		}
 		&__btns {
 			display:flex;
 			gap: 7px;
-			button{
+			button {
 				border: none;
 				background: none;
-				
 			}
-			@media (max-width: 630px){
-			flex: 1 1 100%;
-			justify-content: center;
+			@media (max-width: 630px) {
+				flex: 1 1 100%;
+				justify-content: center;
 			}
 		}
 		&__clear {
@@ -132,15 +127,14 @@
 			&:hover,
 			&:focus{
 				outline: 1px solid rgba(0,0,0,0.6);
-			border-radius: 2px;
+				border-radius: 2px;
 			}
-			@media (max-width: 630px){
-			flex: 1 1 100%;
-			
+			@media (max-width: 630px) {
+				flex: 1 1 100%;
 			}
 		}
 	}
-	.btn-navbar  {
+	.btn-navbar {
 		&._active {
 			outline: 1px solid rgba(0,0,0,0.6);
 			border-radius: 2px;

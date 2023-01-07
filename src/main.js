@@ -1,12 +1,11 @@
 import { createApp } from 'vue';
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap/dist/js/bootstrap.js'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
-import 'overlayscrollbars/overlayscrollbars.css';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap.js';
+import 'bootstrap-vue/dist/bootstrap-vue.css';
+import 'overlayscrollbars/overlayscrollbars.css';;
 import App from './App';
 import components from '@/components/UI';
 import router from '@/router/router';
-import store from '@/store';
 
 const app = createApp(App);
 
